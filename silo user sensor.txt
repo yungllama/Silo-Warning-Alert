@@ -1,0 +1,64 @@
+//Written in C++ by Lamaria 01/06/2021
+//code solution #1 allows for user to simulate as a silo sensor
+//user acts as the sensor and can enter 0 and 1 to simulate silo full or empty 
+//for educational use only
+
+
+
+#include <iostream>
+using namespace std;
+int inputAnalogI1;
+int inputAnalogI2;
+int inputAnalogI3;
+
+int
+main ()
+{
+//if sensor is 0 the silo is full, if sensor is 1 the silo is empty  
+
+  while (1)
+    {
+
+      cout << "Enter I1" << endl;
+      cin >> inputAnalogI1;
+      cout << "Enter I2" << endl;
+      cin >> inputAnalogI2;
+      cout << "Enter I3" << endl;
+      cin >> inputAnalogI3;
+
+      if (inputAnalogI1 == 1 && inputAnalogI2 == 0 && inputAnalogI3 == 0)
+	{
+	  cout << "Red ON" << endl;
+	}
+      else if (inputAnalogI1 == 0 && inputAnalogI2 == 1 && inputAnalogI3 == 0)
+	{
+	  cout << "Red ON" << endl;
+	}
+      else if (inputAnalogI1 == 0 && inputAnalogI2 == 0 && inputAnalogI3 == 1)
+	{
+	  cout << "Red ON" << endl;
+	}
+
+      if (inputAnalogI1 == 1 && inputAnalogI2 == 1 && inputAnalogI3 == 0)
+	{
+	  cout << "Green ON" << endl;
+	}
+      else if (inputAnalogI1 == 0 && inputAnalogI2 == 1 && inputAnalogI3 == 1)
+	{
+	  cout << "Green ON" << endl;
+	}
+      else if (inputAnalogI1 == 1 && inputAnalogI2 == 0 && inputAnalogI3 == 1)
+	{
+	  cout << "Green ON" << endl;
+	}
+
+      if (inputAnalogI1 == 1 && inputAnalogI2 == 1 && inputAnalogI3 == 1)
+	{
+	  cout << "Yellow ON" << endl;
+	}
+	else if(inputAnalogI1 == 0 && inputAnalogI2 == 0 && inputAnalogI3 == 0)
+	{
+	  cout << "Silo FULL" << endl;
+	}
+    }
+}

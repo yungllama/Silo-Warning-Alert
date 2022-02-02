@@ -1,0 +1,64 @@
+//code solution #2 uses analog reading only to simulate as a silo sensor
+//using ARM mbed IDE  
+//written in C++ by Lamaria Jackson 01/06/2021
+
+
+
+#include "mbed.h" //enables libray
+
+//define symbols
+//A0, A1, and A2 are input analog ports for Mbed and STM MCU
+AnalogIn AnalogVoltageI1(A0); //input analog voltage for sensor I1
+AnalogIn AnalogVoltageI2(A1); //input analog voltage for sensor I2
+AnalogIn AnalogVoltageI3(A2); //input analog voltage for sensor I3
+
+DigitalOut O1Red(LED1); //hypothetical output display sensor 
+DigitalOut O2Green(LED2); //hypothetical output display sensor
+DigitalOut O3Yellow(LED3); //hypothetical output display sensor
+
+int inputAnalogI1; //store sensor value as interger
+int inputAnalogI2; //store sensor value as interger
+int inputAnalogI3; //store sensor value as interger
+
+int main()
+{
+    //continuously checks inputs
+    while(1) {
+     
+        inputAnalogI1 = AnalogVoltageI1.read(); //[0,1]
+        inputAnalogI2 = AnalogVoltageI2.read(); //[0,1]
+        inputAnalogI3 = AnalogVoltageI3.read(); //[0,1]
+        
+//if sensor is 0, silo is full
+//if sensor is 1, silo is empty
+//all conditions are checked and given command instructions
+        if(inputAnalogI1==1 && inputAnalogI2==0 && inputAnalogI3==0) {
+            O1Red = 1; //turn on red
+        } else if(inputAnalogI1==0 && inputAnalogI2==1 && inputAnalogI3==0) {
+            O1Red = 1; //turn on red
+        } else if(inputAnalogI1==0 && inputAnalogI2==0 && inputAnalogI3==1) {
+            O1Red = 1; //turn on red
+        }
+
+        if(inputAnalogI1==1 && inputAnalogI2==1 && inputAnalogI3==0) {
+            O2Green = 1; //turn on green
+        } else if(inputAnalogI1==0 && inputAnalogI2==1 && inputAnalogI3==1) {
+            O2Green = 1; //turn on green
+        } else if(inputAnalogI1==1 && inputAnalogI2==0 && inputAnalogI3==1) {
+            O2Green = 1; //turn on green
+        }
+
+        if(inputAnalogI1==1 && inputAnalogI2==1 && inputAnalogI3==1) {
+            O3Yellow = 1; //turn on yellow
+        }
+        else if(inputAnalogI1==0 && inputAnalogI2==0 && inputAnalogI3==0) {
+            O1Red = 0; //all lights off indicating all silos full
+            O2Green = 0;
+            O3Yellow = 0; 
+        }
+    }
+}
+
+
+
+
